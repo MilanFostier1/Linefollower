@@ -7,19 +7,19 @@ lege repository die je als template kan gebruiken om een eigen repository te sta
   
 ## specifications
 
-microcontroller:
+microcontroller: Arduino® Nano ESP32
 
-motors: 
+motors: 50:1 Micro Metal Gearmotor HP 6V
 
-h-bridge:
+h-bridge: DRV8833
 
-sensors:
+sensors: QTR-8A
 
-batteries:
+batteries: 2x 18650 Li-ion 2200mAh 3.7V
 
-wireless communication:
+wireless communication: Arduino® Nano ESP32
 
-distance sensor - motors:
+distance sensor - motors: 
 
 weight:
 
