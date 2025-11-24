@@ -1,0 +1,3 @@
+#define SECRET_DEVICE_KEY "KVsrThXtCrTCNOXL#0MpaX3Wa"
+#define SECRET_OPTIONAL_PASS "bzZ3YZBx1Avd"
+#define SECRET_SSID "telenet-2C166"
