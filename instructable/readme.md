@@ -37,7 +37,9 @@ Gebruik dit schema als uitgangspunt; pas pin-nummers in de code aan als je ander
   1. Voeding
 
   1.1. Batterijhouder + → VIN (of + van DRV8833 VMOT) (7.4 V)
+  
   1.2. Batterijhouder − → GND (alle GND’s met elkaar verbonden)
+  
   1.3. Schuifschakelaar in serie met + batterij (aan/uit)
 
   2. DRV8833 H-brug naar motoren
