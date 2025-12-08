@@ -36,50 +36,36 @@ Gebruik dit schema als uitgangspunt; pas pin-nummers in de code aan als je ander
 
   1. Voeding
 
-  1.1. Batterijhouder + → VIN (of + van DRV8833 VMOT) (7.4 V)
-  
-  1.2. Batterijhouder − → GND (alle GND’s met elkaar verbonden)
-  
-  1.3. Schuifschakelaar in serie met + batterij (aan/uit)
+    1.1. Batterijhouder + → VIN (of + van DRV8833 VMOT) (7.4 V)
+    1.2. Batterijhouder − → GND (alle GND’s met elkaar verbonden)
+    1.3. Schuifschakelaar in serie met + batterij (aan/uit)
 
   2. DRV8833 H-brug naar motoren
 
-  2.1. DRV8833 VM → +7.4V (batterij via schakelaar)
+    2.1. DRV8833 VM → +7.4V (batterij via schakelaar)
+    2.2. DRV8833 GND → GND
+    2.3. Motor A outputs → Motor links (M1+, M1−)
+    2.4. Motor B outputs → Motor rechts (M2+, M2−)
   
-  2.2. DRV8833 GND → GND
-  
-  2.3. Motor A outputs → Motor links (M1+, M1−)
-  
-  2.4. Motor B outputs → Motor rechts (M2+, M2−)
-  
-
   3. DRV8833 signal naar Arduino Nano ESP32 (aanbevolen pin-layout — wijzigbaar)
 
-  3.1. IN1 (Motor A AIN1) → GPIO 14
-  
-  3.2. IN2 (Motor A AIN2) → GPIO 27
-  
-  3.3. IN3 (Motor B BIN1) → GPIO 26
-  
-  3.4. IN4 (Motor B BIN2) → GPIO 25
-  
-  3.5. (optioneel) PWM inputs als beschikbaar / of gebruik digitale PWM op dezelfde pins
+    3.1. IN1 (Motor A AIN1) → GPIO 14
+    3.2. IN2 (Motor A AIN2) → GPIO 27
+    3.3. IN3 (Motor B BIN1) → GPIO 26
+    3.4. IN4 (Motor B BIN2) → GPIO 25
+    3.5. (optioneel) PWM inputs als beschikbaar / of gebruik digitale PWM op dezelfde pins
 
   4. QTR-8A sensor
   
-  4.1. VCC → 5V (of 3.3V als QTR-8A daar compatibel mee; controleer je module)
-  
-  4.2. GND → GND
-  
-  4.3. OUTs → analoge of digitale ingangen op Nano ESP32 (bijv. A0..A7 → GPIOs 34, 35, 32, 33, 39, 36, 4, 2) — kies beschikbare ADC/GPIO pins
-  
-  4.4. Als de QTR-8A module I2C of analoog heeft, verbind overeenkomstig.
+    4.1. VCC → 5V (of 3.3V als QTR-8A daar compatibel mee; controleer je module)
+    4.2. GND → GND
+    4.3. OUTs → analoge of digitale ingangen op Nano ESP32 (bijv. A0..A7 → GPIOs 34, 35, 32, 33, 39, 36, 4, 2) — kies beschikbare ADC/GPIO pins
+    4.4. Als de QTR-8A module I2C of analoog heeft, verbind overeenkomstig.
   
   5. Extra
   
-  5.1. USB-C kabeltje → Arduino voor programmeren en debug (zorg dat schakeling losgekoppeld is of gescheiden van motorvoeding tijdens upload).
-  
-  5.2. Condensatoren parallel aan motorvoeding (zoals hierboven) om ruis en spikes te dempen.
+    5.1. USB-C kabeltje → Arduino voor programmeren en debug (zorg dat schakeling losgekoppeld is of gescheiden van motorvoeding tijdens upload).
+    5.2. Condensatoren parallel aan motorvoeding (zoals hierboven) om ruis en spikes te dempen.
 
 ### stap 6 — Solderen & bevestigen
 
@@ -100,27 +86,19 @@ Gebruik dit schema als uitgangspunt; pas pin-nummers in de code aan als je ander
 
   1. Benodigde software / libraries (kort):
      
-  1.1. Arduino IDE (of Arduino CLI) of PlatformIO.
-  
-  1.2. ESP32 board-support voor Arduino (esp32).
-  
-  1.3. Pololu QTR-sensor library (bijv. QTRSensors van Pololu).
-  
-  1.4. (optioneel) AccelStepper of een eenvoudige motor control helper als je PWM / snelheidsregeling wil.
+    1.1. Arduino IDE (of Arduino CLI) of PlatformIO.
+    1.2. ESP32 board-support voor Arduino (esp32).
+    1.3. Pololu QTR-sensor library (bijv. QTRSensors van Pololu).
+    1.4. (optioneel) AccelStepper of een eenvoudige motor control helper als je PWM / snelheidsregeling wil.
 
   2. Arduino IDE (GUI) korte instructies:
   
-  2.1. Installeer Arduino IDE.
-  
-  2.2. Ga naar File > Preferences → voeg https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json toe aan Additional Boards            Manager URLs (als nodig).
-  
-  2.3. Ga naar Tools > Board > Boards Manager → zoek esp32 → installeer esp32 by Espressif.
-  
-  2.4. Selecteer board: Arduino Nano ESP32 (of het specifieke Nano ESP32 board in de lijst).
-  
-  2.5. Selecteer juiste COM-poort onder Tools > Port.
-  
-  2.6. Installeer via Library Manager de QTRSensors library.
+    2.1. Installeer Arduino IDE.
+    2.2. Ga naar File > Preferences → voeg https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json toe aan Additional Boards            Manager URLs (als nodig).
+    2.3. Ga naar Tools > Board > Boards Manager → zoek esp32 → installeer esp32 by Espressif.
+    2.4. Selecteer board: Arduino Nano ESP32 (of het specifieke Nano ESP32 board in de lijst).
+    2.5. Selecteer juiste COM-poort onder Tools > Port.
+    2.6. Installeer via Library Manager de QTRSensors library.
 
   3. Arduino CLI (command-line) voorbeeld:
     (als je arduino-cli hebt geïnstalleerd)
