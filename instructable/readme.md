@@ -101,17 +101,25 @@ Gebruik dit schema als uitgangspunt; pas pin-nummers in de code aan als je ander
   1. Benodigde software / libraries (kort):
      
   1.1. Arduino IDE (of Arduino CLI) of PlatformIO.
+  
   1.2. ESP32 board-support voor Arduino (esp32).
+  
   1.3. Pololu QTR-sensor library (bijv. QTRSensors van Pololu).
+  
   1.4. (optioneel) AccelStepper of een eenvoudige motor control helper als je PWM / snelheidsregeling wil.
 
   2. Arduino IDE (GUI) korte instructies:
   
   2.1. Installeer Arduino IDE.
+  
   2.2. Ga naar File > Preferences → voeg https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json toe aan Additional Boards            Manager URLs (als nodig).
+  
   2.3. Ga naar Tools > Board > Boards Manager → zoek esp32 → installeer esp32 by Espressif.
+  
   2.4. Selecteer board: Arduino Nano ESP32 (of het specifieke Nano ESP32 board in de lijst).
+  
   2.5. Selecteer juiste COM-poort onder Tools > Port.
+  
   2.6. Installeer via Library Manager de QTRSensors library.
 
   3. Arduino CLI (command-line) voorbeeld:
