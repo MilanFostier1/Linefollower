@@ -62,7 +62,26 @@ Parameterwaarden worden gescheiden door spaties.
   Tip: herkalibreer wanneer de ondergrond of belichting verandert.
 
 ### settings
-De robot rijdt stabiel met volgende parameters:  
+
+De robot rijdt stabiel met de volgende parameters:
+
+  set power 35
+  set diff 0.25
+  set kp 4.00
+  set ki 0.00
+  set kd 0.00
+  set cycle 4000
+
+Gebruik deze waarden als basis en pas ze enkel licht aan voor bochten of verschillende ondergronden.
 
 ### start/stop button
-uitleg locatie + werking start/stop button
+
+  1. Locatie
+
+De start/stop-button bevindt zich op het bovenoppervlak van het chassis, naast de Arduino Nano ESP32.
+
+  2. Werking
+
+Korte druk → robot start met rijden volgens de ingestelde parameters.
+Korte druk tijdens rijden → robot stopt onmiddellijk.
+Knop werkt onafhankelijk van USB-verbinding en draadloze commando’s.
