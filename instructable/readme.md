@@ -7,61 +7,44 @@ bestel alle componenten uit de bill of materials
 
 ### stap 2 — Voorbereiding onderdelen
 
-Controleer ontvangst en aantallen tegen de BOM.
+  1. Controleer ontvangst en aantallen tegen de BOM.
+  2. Laad de 18650-batterijen volledig op in de batterijoplader en plaats ze in de batterijhouder (serie = 7,4 V).
+  3. Monteer pin-headers waar nodig op de Arduino Nano ESP32 en op de QTR-8A (indien niet vooraf gesoldeerd).
 
-Laad de 18650-batterijen volledig op in de batterijoplader en plaats ze in de batterijhouder (serie = 7,4 V).
+### stap 3 — Mechanische montage chassis
 
-Monteer pin-headers waar nodig op de Arduino Nano ESP32 en op de QTR-8A (indien niet vooraf gesoldeerd).
+  1. Leg de experimenteerprint (9×15 cm) als chassis.
+  2. Plaats motorbeugels op het chassis op positie voor twee wielen.
+  3. Monteer de twee 50:1 micro metal gearmotoren in de beugels en zet ze vast.
+  4. Druk/wissel de Pololu-wielen op de motorassen.
+  5. Monteer de batterijhouder op het chassis (centraal achter/onder) met schroeven of dubbelzijdig tape.
+  6.Monteer de QTR-8A aan de voorkant van het chassis (afstand tot grond ~5–12 mm afhankelijk van test).
+  7. Monteer de schuifschakelaar op een toegankelijke plek (aan/uit).
+  8. Bevestig de Arduino Nano ESP32 op het chassis (stand-off of dubbelzijdig tape).
+  9. Monteer de DRV8833 H-brug dicht bij de motoren maar minimaal vibratiebelasting.
 
-Stap 3 — Mechanische montage chassis
+### stap 4 — Elektrische onderdelen klaarzetten
 
-Leg de experimenteerprint (9×15 cm) als chassis.
+  1. Knip en strip draden uit de 40-aderige draadset. Maak korte draadjes voor signaal en langere voor voeding/massa.
+  2. Plaats condensator 100µF over de motorvoeding (tussen +7.4V en GND) dicht bij de DRV8833.
+  3. Plaats schijfcondensator 100nF ook dicht bij de voedingspinnen van de DRV8833 / Arduino.
 
-Plaats motorbeugels op het chassis op positie voor twee wielen.
-
-Monteer de twee 50:1 micro metal gearmotoren in de beugels en zet ze vast.
-
-Druk/wissel de Pololu-wielen op de motorassen.
-
-Monteer de batterijhouder op het chassis (centraal achter/onder) met schroeven of dubbelzijdig tape.
-
-Monteer de QTR-8A aan de voorkant van het chassis (afstand tot grond ~5–12 mm afhankelijk van test).
-
-Monteer de schuifschakelaar op een toegankelijke plek (aan/uit).
-
-Bevestig de Arduino Nano ESP32 op het chassis (stand-off of dubbelzijdig tape).
-
-Monteer de DRV8833 H-brug dicht bij de motoren maar minimaal vibratiebelasting.
-
-Stap 4 — Elektrische onderdelen klaarzetten
-
-Knip en strip draden uit de 40-aderige draadset. Maak korte draadjes voor signaal en langere voor voeding/massa.
-
-Plaats condensator 100µF over de motorvoeding (tussen +7.4V en GND) dicht bij de DRV8833.
-
-Plaats schijfcondensator 100nF ook dicht bij de voedingspinnen van de DRV8833 / Arduino.
-
-Stap 5 — Bekabeling (wiring overzicht)
+### stap 5 — Bekabeling (wiring overzicht)
 
 Gebruik dit schema als uitgangspunt; pas pin-nummers in de code aan als je andere pins kiest.
 
-Voeding
+  1. Voeding
 
-Batterijhouder + → VIN (of + van DRV8833 VMOT) (7.4 V)
+    1. Batterijhouder + → VIN (of + van DRV8833 VMOT) (7.4 V)
+    2. Batterijhouder − → GND (alle GND’s met elkaar verbonden)
+    3. Schuifschakelaar in serie met + batterij (aan/uit)
 
-Batterijhouder − → GND (alle GND’s met elkaar verbonden)
+  2. DRV8833 H-brug naar motoren
 
-Schuifschakelaar in serie met + batterij (aan/uit)
-
-DRV8833 H-brug naar motoren
-
-DRV8833 VM → +7.4V (batterij via schakelaar)
-
-DRV8833 GND → GND
-
-Motor A outputs → Motor links (M1+, M1−)
-
-Motor B outputs → Motor rechts (M2+, M2−)
+    1. DRV8833 VM → +7.4V (batterij via schakelaar)
+    2. DRV8833 GND → GND
+    3. Motor A outputs → Motor links (M1+, M1−)
+    4. Motor B outputs → Motor rechts (M2+, M2−)
 
 DRV8833 signal naar Arduino Nano ESP32 (aanbevolen pin-layout — wijzigbaar)
 
@@ -91,7 +74,7 @@ USB-C kabeltje → Arduino voor programmeren en debug (zorg dat schakeling losge
 
 Condensatoren parallel aan motorvoeding (zoals hierboven) om ruis en spikes te dempen.
 
-Stap 6 — Solderen & bevestigen
+### stap 6 — Solderen & bevestigen
 
 Soldeer motoren aan motorkabels; soldeer kabels aan DRV8833 motoruitgangen.
 
@@ -101,7 +84,7 @@ Controleer alle verbindingen met multimeter op kortsluiting en correcte continu�
 
 Monteer alles definitief op het chassis.
 
-Stap 7 — Veiligheidscheck vóór eerste inschakeling
+### stap 7 — Veiligheidscheck vóór eerste inschakeling
 
 Controleer polariteit van batterijen.
 
