@@ -83,5 +83,7 @@ De start/stop-button bevindt zich op het bovenoppervlak van het chassis, naast d
   2. Werking
 
 Korte druk → robot start met rijden volgens de ingestelde parameters.
+
 Korte druk tijdens rijden → robot stopt onmiddellijk.
+
 Knop werkt onafhankelijk van USB-verbinding en draadloze commando’s.
