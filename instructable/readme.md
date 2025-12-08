@@ -4,3 +4,238 @@ Een instructable is een stappenplan - zonder verdere uitleg - hoe je vertrekkend
 
 ### stap 1
 bestel alle componenten uit de bill of materials  
+Stap 2 — Voorbereiding onderdelen
+
+Controleer ontvangst en aantallen tegen de BOM.
+
+Laad de 18650-batterijen volledig op in de batterijoplader en plaats ze in de batterijhouder (serie = 7,4 V).
+
+Monteer pin-headers waar nodig op de Arduino Nano ESP32 en op de QTR-8A (indien niet vooraf gesoldeerd).
+
+Stap 3 — Mechanische montage chassis
+
+Leg de experimenteerprint (9×15 cm) als chassis.
+
+Plaats motorbeugels op het chassis op positie voor twee wielen.
+
+Monteer de twee 50:1 micro metal gearmotoren in de beugels en zet ze vast.
+
+Druk/wissel de Pololu-wielen op de motorassen.
+
+Monteer de batterijhouder op het chassis (centraal achter/onder) met schroeven of dubbelzijdig tape.
+
+Monteer de QTR-8A aan de voorkant van het chassis (afstand tot grond ~5–12 mm afhankelijk van test).
+
+Monteer de schuifschakelaar op een toegankelijke plek (aan/uit).
+
+Bevestig de Arduino Nano ESP32 op het chassis (stand-off of dubbelzijdig tape).
+
+Monteer de DRV8833 H-brug dicht bij de motoren maar minimaal vibratiebelasting.
+
+Stap 4 — Elektrische onderdelen klaarzetten
+
+Knip en strip draden uit de 40-aderige draadset. Maak korte draadjes voor signaal en langere voor voeding/massa.
+
+Plaats condensator 100µF over de motorvoeding (tussen +7.4V en GND) dicht bij de DRV8833.
+
+Plaats schijfcondensator 100nF ook dicht bij de voedingspinnen van de DRV8833 / Arduino.
+
+Stap 5 — Bekabeling (wiring overzicht)
+
+Gebruik dit schema als uitgangspunt; pas pin-nummers in de code aan als je andere pins kiest.
+
+Voeding
+
+Batterijhouder + → VIN (of + van DRV8833 VMOT) (7.4 V)
+
+Batterijhouder − → GND (alle GND’s met elkaar verbonden)
+
+Schuifschakelaar in serie met + batterij (aan/uit)
+
+DRV8833 H-brug naar motoren
+
+DRV8833 VM → +7.4V (batterij via schakelaar)
+
+DRV8833 GND → GND
+
+Motor A outputs → Motor links (M1+, M1−)
+
+Motor B outputs → Motor rechts (M2+, M2−)
+
+DRV8833 signal naar Arduino Nano ESP32 (aanbevolen pin-layout — wijzigbaar)
+
+IN1 (Motor A AIN1) → GPIO 14
+
+IN2 (Motor A AIN2) → GPIO 27
+
+IN3 (Motor B BIN1) → GPIO 26
+
+IN4 (Motor B BIN2) → GPIO 25
+
+(optioneel) PWM inputs als beschikbaar / of gebruik digitale PWM op dezelfde pins
+
+QTR-8A sensor
+
+VCC → 5V (of 3.3V als QTR-8A daar compatibel mee; controleer je module)
+
+GND → GND
+
+OUTs → analoge of digitale ingangen op Nano ESP32 (bijv. A0..A7 → GPIOs 34, 35, 32, 33, 39, 36, 4, 2) — kies beschikbare ADC/GPIO pins
+
+Als de QTR-8A module I2C of analoog heeft, verbind overeenkomstig.
+
+Extra
+
+USB-C kabeltje → Arduino voor programmeren en debug (zorg dat schakeling losgekoppeld is of gescheiden van motorvoeding tijdens upload).
+
+Condensatoren parallel aan motorvoeding (zoals hierboven) om ruis en spikes te dempen.
+
+Stap 6 — Solderen & bevestigen
+
+Soldeer motoren aan motorkabels; soldeer kabels aan DRV8833 motoruitgangen.
+
+Soldeer pin-headers / verbindingskabels voor QTR-8A en Arduino.
+
+Controleer alle verbindingen met multimeter op kortsluiting en correcte continuïteit.
+
+Monteer alles definitief op het chassis.
+
+Stap 7 — Veiligheidscheck vóór eerste inschakeling
+
+Controleer polariteit van batterijen.
+
+Schakel schakelaar uit, verbind batterijen.
+
+Meet spanningen op DRV8833 VM en Arduino VIN.
+
+Zet schakelaar aan en controleer dat geen rook/oververhitting plaatsvindt.
+
+Schakel direct uit bij verdachte geuren of hitte.
+
+Stap 8 — Firmware voorbereiden (software)
+
+Benodigde software / libraries (kort):
+
+Arduino IDE (of Arduino CLI) of PlatformIO.
+
+ESP32 board-support voor Arduino (esp32).
+
+Pololu QTR-sensor library (bijv. QTRSensors van Pololu).
+
+(optioneel) AccelStepper of een eenvoudige motor control helper als je PWM / snelheidsregeling wil.
+
+Arduino IDE (GUI) korte instructies:
+
+Installeer Arduino IDE.
+
+Ga naar File > Preferences → voeg https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json toe aan Additional Boards Manager URLs (als nodig).
+
+Ga naar Tools > Board > Boards Manager → zoek esp32 → installeer esp32 by Espressif.
+
+Selecteer board: Arduino Nano ESP32 (of het specifieke Nano ESP32 board in de lijst).
+
+Selecteer juiste COM-poort onder Tools > Port.
+
+Installeer via Library Manager de QTRSensors library.
+
+Arduino CLI (command-line) voorbeeld
+(als je arduino-cli hebt geïnstalleerd)
+
+arduino-cli core update-index
+arduino-cli core install esp32:esp32
+arduino-cli lib install "QTRSensors"
+# Compile
+arduino-cli compile --fqbn esp32:esp32:arduino_nano_esp32 path/to/your/sketch
+# Upload (pas de port aan)
+arduino-cli upload -p /dev/ttyUSB0 --fqbn esp32:esp32:arduino_nano_esp32 path/to/your/sketch
+
+
+Stap 9 — Voorbeeld minimale sketch (skeleton)
+
+Pas pin-definities aan aan jouw bedrading en QTR-pin-keuze.
+
+// Minimal skeleton voor line-following basis
+#include <Arduino.h>
+#include <QTRSensors.h>
+
+// Pin-definities (pas aan)
+const int AIN1 = 14;
+const int AIN2 = 27;
+const int BIN1 = 26;
+const int BIN2 = 25;
+
+// QTR
+QTRSensors qtr;
+const uint8_t qtrPins[8] = {34,35,32,33,39,36,4,2};
+
+void setup() {
+  // Motor pins
+  pinMode(AIN1, OUTPUT);
+  pinMode(AIN2, OUTPUT);
+  pinMode(BIN1, OUTPUT);
+  pinMode(BIN2, OUTPUT);
+
+  // QTR init
+  qtr.setTypeRC();
+  qtr.setSensorPins(qtrPins, 8);
+  qtr.setTimeout(2500);
+  qtr.setEmitterPin(21); // indien van toepassing
+  Serial.begin(115200);
+}
+
+void driveForward() {
+  digitalWrite(AIN1, HIGH); digitalWrite(AIN2, LOW);
+  digitalWrite(BIN1, HIGH); digitalWrite(BIN2, LOW);
+}
+
+void stopMotors() {
+  digitalWrite(AIN1, LOW); digitalWrite(AIN2, LOW);
+  digitalWrite(BIN1, LOW); digitalWrite(BIN2, LOW);
+}
+
+void loop() {
+  unsigned int sensorValues[8];
+  qtr.read(sensorValues);
+  // Basale beslislogica (vervang door echte line-follow algoritme)
+  unsigned long sum = 0;
+  for (int i=0;i<8;i++) sum += sensorValues[i];
+  if (sum > 1000) {
+    driveForward();
+  } else {
+    stopMotors();
+  }
+  delay(50);
+}
+
+
+Stap 10 — Compileer & upload
+
+Verbind Arduino via USB-C met je PC.
+
+Selecteer board en poort in Arduino IDE.
+
+Klik Verify (compile).
+
+Klik Upload.
+
+Open Serial Monitor (115200) voor debug-output.
+
+Stap 11 — Testen & afregelen
+
+Leg een testlijn (zwart op wit) voor de QTR-sensor.
+
+Zet robot aan (schakelaar).
+
+Bekijk seriële waarden en pas drempels / PID-logica aan in je code.
+
+Kalibreer QTR-sensor (meerdere metingen in verschillende posities) en update code indien nodig.
+
+Finetune motorsnelheid (PWM) en wrijving.
+
+Stap 12 — Eindcontrole & documentatie
+
+Zorg dat alle kabels netjes vastzitten en geen bewegende delen raken.
+
+Noteer pinout en eventuele wijzigingen in de BOM/cablerun.
+
+Maak backup van de definitieve code en bewaar een kopie van het schema.
