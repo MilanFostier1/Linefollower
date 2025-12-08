@@ -170,32 +170,22 @@ Gebruik dit schema als uitgangspunt; pas pin-nummers in de code aan als je ander
 
 ### stap 10 — Compileer & upload
 
-Verbind Arduino via USB-C met je PC.
+  1. Verbind Arduino via USB-C met je PC.
+  2. Selecteer board en poort in Arduino IDE.
+  3. Klik Verify (compile).
+  4. Klik Upload.
+  5. Open Serial Monitor (115200) voor debug-output.
 
-Selecteer board en poort in Arduino IDE.
+### stap 11 — Testen & afregelen
 
-Klik Verify (compile).
+  1. Leg een testlijn (zwart op wit) voor de QTR-sensor.
+  2. Zet robot aan (schakelaar).
+  3. Bekijk seriële waarden en pas drempels / PID-logica aan in je code.
+  4. Kalibreer QTR-sensor (meerdere metingen in verschillende posities) en update code indien nodig.
+  5. Finetune motorsnelheid (PWM) en wrijving.
 
-Klik Upload.
+### stap 12 — Eindcontrole & documentatie
 
-Open Serial Monitor (115200) voor debug-output.
-
-Stap 11 — Testen & afregelen
-
-Leg een testlijn (zwart op wit) voor de QTR-sensor.
-
-Zet robot aan (schakelaar).
-
-Bekijk seriële waarden en pas drempels / PID-logica aan in je code.
-
-Kalibreer QTR-sensor (meerdere metingen in verschillende posities) en update code indien nodig.
-
-Finetune motorsnelheid (PWM) en wrijving.
-
-Stap 12 — Eindcontrole & documentatie
-
-Zorg dat alle kabels netjes vastzitten en geen bewegende delen raken.
-
-Noteer pinout en eventuele wijzigingen in de BOM/cablerun.
-
-Maak backup van de definitieve code en bewaar een kopie van het schema.
+1. Zorg dat alle kabels netjes vastzitten en geen bewegende delen raken.
+2. Noteer pinout en eventuele wijzigingen in de BOM/cablerun.
+3. Maak backup van de definitieve code en bewaar een kopie van het schema.
