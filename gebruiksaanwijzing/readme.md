@@ -65,12 +65,12 @@ Parameterwaarden worden gescheiden door spaties.
 
 De robot rijdt stabiel met de volgende parameters:
 
-  set power 35
-  set diff 0.25
-  set kp 4.00
-  set ki 0.00
-  set kd 0.00
-  set cycle 4000
+    set power 35
+    set diff 0.25
+    set kp 4.00
+    set ki 0.00
+    set kd 0.00
+    set cycle 4000
 
 Gebruik deze waarden als basis en pas ze enkel licht aan voor bochten of verschillende ondergronden.
 
