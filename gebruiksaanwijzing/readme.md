@@ -53,11 +53,11 @@ Parameterwaarden worden gescheiden door spaties.
   
   Beweeg de robot tijdens de kalibratie lichtjes over de lijn zodat alle sensoren met minimale reflectie gemeten worden.
 
-  3. Zet de robot volledig op witte ondergrond en voer calibrate white uit.
+  2. Zet de robot volledig op witte ondergrond en voer calibrate white uit.
 
   Wieg de robot zodat alle sensoren maximale reflectie meten.
 
-  5. De robot slaat beide waardes op en gebruikt ze om de lijnpositie nauwkeurig te berekenen.
+  3. De robot slaat beide waardes op en gebruikt ze om de lijnpositie nauwkeurig te berekenen.
 
   Tip: herkalibreer wanneer de ondergrond of belichting verandert.
 
