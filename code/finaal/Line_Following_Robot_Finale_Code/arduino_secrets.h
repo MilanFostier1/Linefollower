@@ -1,0 +1,3 @@
+#define SECRET_DEVICE_KEY "KVsrThXtCrTCNOXL#0MpaX3Wa"
+#define SECRET_OPTIONAL_PASS "11LMZH56"
+#define SECRET_SSID "iotroam"
