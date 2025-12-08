@@ -17,9 +17,9 @@ batteries: 2x 18650 Li-ion 2200mAh 3.7V
 
 wireless communication: Arduino® Nano ESP32
 
-distance sensor - motors: 
+distance sensor - motors: 11 cm
 
-weight:
+weight: 250 gram
 
-speed: 
+speed: 0,42 m/s
 
