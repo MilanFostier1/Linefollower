@@ -19,17 +19,33 @@
   5. Vanaf de webinterface of seriële terminal kunnen alle commando’s worden verstuurd.
 
 #### commando's
-debug [on/off]  
-start  
-stop  
-set cycle [µs]  
-set power [0..255]  
-set diff [0..1]  
-set kp [0..]  
-set ki [0..]  
-set kd [0..]  
-calibrate black  
-calibrate white  
+
+Alle commando’s worden als tekst zonder hoofdletters verzonden.
+Parameterwaarden worden gescheiden door spaties.
+
+  1. Controle & status
+
+    debug on — toont alle sensorwaarden en berekende correcties.
+    debug off — stopt debug-output.
+
+  2. Actie
+
+    start — robot begint te rijden volgens ingestelde PID-parameters.
+    stop — robot stopt onmiddellijk alle motoren.
+
+  3. Instellingen
+
+    set cycle [µs] — bepaalt de looptijd van één regelcyclus in microseconden.
+    set power [0..255] — basisvermogen waarmee beide motoren draaien.
+    set diff [0..1] — maximale snelheidsafwijking tussen linker en rechter motor.
+    set kp [waarde] — proportionele versterking voor de regelaar.
+    set ki [waarde] — integrale versterking.
+    set kd [waarde] — differentiële versterking.
+
+  4. Kalibratie
+
+    calibrate black — registreert min/max-waarden op zwarte lijn.
+    calibrate white — registreert min/max-waarden op witte achtergrond.
 
 ### kalibratie
 
